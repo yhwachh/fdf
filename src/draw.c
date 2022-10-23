@@ -19,14 +19,13 @@ void	line(t_dot a, t_dot b, t_dot *param)
 	max = (mod(step_x) > mod(step_x)) ? mod(step_x) : mod(step_x);
 	step_x /= max;
 	step_y /= max;
-	color = (b.z || a.z) ? 0xfc0345 : 0xBBFAFF;
-	color = (b.z != a.z) ? 0xfc031c : color;
+	color = (b.z || a.z) ? 0xe80c0c : 0xffffff;
 	while ((int)(a.x - b.x) || (int)(a.y - b.y))
 	{
 		mlx_pixel_put(param->mlx_ptr, param->win_ptr, a.x, a.y, color);
 		a.x += step_x;
 		a.y += step_y;
-		if (a.x > param->win_x || a.y > param->win_y || a.y < 0 || a.x < 0)
+		if (a.x > 2000 || a.y > 1000 || a.y < 0 || a.x < 0)
 			break ;
 	}
 }
