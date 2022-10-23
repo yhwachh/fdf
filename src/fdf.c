@@ -25,5 +25,4 @@ int		main(int argc, char **argv)
 	draw(matrix);
 	mlx_key_hook(PRM.win_ptr, deal_key, matrix);
 	mlx_loop(PRM.mlx_ptr);
-	exit(1);
 }

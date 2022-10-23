@@ -19,9 +19,3 @@ fclean: clean
 	@make -C libft/ fclean
 
 re: fclean all
-
-push:
-	git add .
-	git status
-	git commit -m fdf
-	git push
