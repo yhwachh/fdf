@@ -61,6 +61,7 @@ size_t	count_word(char const *s, char c);
 char	**ft_strsplit(char const *s, char c);
 char	*get_next_line(int fd);
 char	*ft_strjoin2(char *s1, char *s2);
+int		ft_wdcounter(char const *str, char c);
 
 
 typedef struct s_list

@@ -1,80 +1,78 @@
 #include "libft.h"
 
-static int	ft_sep(char const *s, char c)
+static int		words(char const *str, char c)
 {
-	int	t;
-	int	n;
+	int i;
+	int words;
 
-	t = 0;
-	n = 0;
-	while (s[t] != '\0')
+	words = 0;
+	i = 0;
+	while (str[i])
 	{
-		if (s[t] == c && s[t + 1] != '\0' && s[t + 1] != c)
-			++n;
-		++t;
+		while (str[i] == c && str[i] != '\0')
+			i++;
+		if (str[i])
+			words++;
+		while (str[i] != c && str[i] != '\0')
+			i++;
 	}
-	++n;
-	return (n);
+	return (words);
 }
 
-static char	*malloc_size(char const *s, char c)
+static char		**memory_giver(char const *str, char c)
 {
-	char	*size;
+	char	**res;
+	int		letters;
 	int		i;
-
-	i = 0;
-	while (s[i] && s[i] != c)
-		++i;
-	size = malloc(sizeof(char) * (i + 1));
-	if (!size)
-		return (NULL);
-	i = 0;
-	while (s[i] != '\0' && s[i] != c)
-	{
-		size[i] = s[i];
-		++i;
-	}
-	size[i] = '\0';
-	return (size);
-}
-
-static void	*ft_free_all(char **tab, size_t n)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (i < n)
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-	return (NULL);
-}
-
-char	**ft_strsplit(char const *s, char c)
-{
-	char	**tab;
-	int		sep;
 	int		j;
 
+	if ((res = (char **)malloc(sizeof(char*) * (words(str, c) + 1))) == NULL)
+		return (NULL);
+	i = 0;
 	j = 0;
-	sep = ft_sep(s, c);
-	tab = malloc(sizeof(char *) * (sep + 1));
-	if (!tab)
-		return (ft_free_all(tab, sep));
-	while (*s)
+	while (str[i])
 	{
-		while (*s && *s == c)
-			s++;
-		if (*s && *s != c)
+		letters = 0;
+		while (str[i] == c && str[i])
+			i++;
+		while (str[i] != c && str[i] != '\0')
 		{
-			tab[j] = malloc_size(s, c);
-			++j;
-			while (*s && *s != c)
-				s++;
+			letters++;
+			i++;
 		}
+		if (letters > 0)
+			if ((res[j++] = (char *)malloc(sizeof(char) * letters + 1)) == NULL)
+				return (NULL);
 	}
-	tab[j] = NULL;
-	return (tab);
+	res[j] = 0;
+	return (res);
+}
+
+char			**ft_strsplit(char const *str, char c)
+{
+	char	**res;
+	int		i;
+	int		j;
+	int		str_number;
+	int		size;
+
+	if (str == NULL)
+		return (NULL);
+	size = words(str, c);
+	res = memory_giver(str, c);
+	if (res == NULL)
+		return (NULL);
+	i = 0;
+	str_number = 0;
+	while (str_number < size)
+	{
+		while (str[i] == c && str[i])
+			i++;
+		j = 0;
+		while (str[i] != c && str[i])
+			res[str_number][j++] = str[i++];
+		res[str_number][j] = '\0';
+		str_number++;
+	}
+	return (res);
 }

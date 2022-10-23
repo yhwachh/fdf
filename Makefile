@@ -1,41 +1,27 @@
-FLAG = -Wall -Werror -Wextra -g
-IDIR = ./includes/
-NAME = fdf
-SRC_PATH = ./srcs/
-LIB_PATH = ./libft/
-LIB = libft/libft.a
-MlX_PATH = ./mlx/
-MLX = mlx/libmlx.a
-M.FLAG = -Lmlx -lmlx -framework OpenGl -framework AppKit
-CHEK = -fsanitize=address
 
-FILES =	main.c				\
-		read_file.c			
+FRAEMWORKS=-framework OpenGL -framework AppKit
+FLAGS=-Werror -Wextra -Wall
+NAME=fdf
+SRC=src/*.c
+INCLUDES=libft/libft.a mlx/libmlx.a
 
-SRCS_FILES = $(addprefix srcs/, $(FILES))
-OBJ = $(SRCS_FILES:.c=.o)
-
-all:$(NAME)
-$(NAME): $(LIB) $(OBJ)
-	make -C $(MlX_PATH)
-	gcc $(OBJ) $(LIB) -I $(LIB_PATH) $(M.FLAG) $(MLX) -I $(MlX_PATH) -o $(NAME) $(CHEK)
-
-%.o: %.c
-	gcc -c $(FLAG) $< -o $@ -I$(IDIR)
-
-$(OBJ) : $(IDIR)fdf.h
+all:
+	@make -C libft/ all
+	@make -C mlx/ all
+	gcc $(SRC) -o $(NAME) $(FLAGS) $(INCLUDES) $(FRAEMWORKS)
 
 clean:
-	rm -f $(OBJ)
-	make clean -C $(LIB_PATH)
-	make clean -C $(MlX_PATH)
+	@make -C libft/ clean
+	@make -C mlx/ clean
 
 fclean: clean
-	rm -f $(NAME)
-	rm -f $(LIB)
-	rm -f $(MLX)
+	/bin/rm -f $(NAME)
+	@make -C libft/ fclean
 
 re: fclean all
 
-libft/libft.a:
-	make -C libft
+push:
+	git add .
+	git status
+	git commit -m fdf
+	git push
