@@ -20,8 +20,6 @@ typedef struct
 	int			shift_y;
 	int			is_isometric;
 	double		angle;
-	int			win_x;
-	int			win_y;
 	void		*mlx_ptr;
 	void		*win_ptr;
 }				t_dot;
