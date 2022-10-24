@@ -6,10 +6,9 @@
 /*   By: ibalbako <ibalbako@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 12:12:47 by ibalbako          #+#    #+#             */
-/*   Updated: 2022/10/24 12:12:49 by ibalbako         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:11:55 by ibalbako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "fdf.h"
 
@@ -27,12 +26,11 @@ void	do_key(int key, t_dot **tab)
 		TAB.shift_x -= 10;
 	if (key == 124)
 		TAB.shift_x += 10;
-
 }
 
-int		deal_key(int key, t_dot **tab)
+int	deal_key(int key, t_dot **tab)
 {
-	if (key == 24 || key == 69 || key == 27 || key == 78 ) 
+	if (key == 24 || key == 69 || key == 27 || key == 78)
 	{
 		mlx_clear_window(TAB.mlx_ptr, TAB.win_ptr);
 		do_key(key, tab);

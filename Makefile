@@ -1,6 +1,6 @@
 
 FRAEMWORKS=-framework OpenGL -framework AppKit
-FLAGS=-Werror -Wextra -Wall
+FLAGS=-Werror -Wextra -Wall -g
 NAME=fdf
 SRC=src/*.c
 INCLUDES=libft/libft.a mlx/libmlx.a

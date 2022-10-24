@@ -25,6 +25,8 @@ typedef struct
 	float		z;
 	int			is_last;
 
+	float		step_x;
+	float		step_y;
 	int			color;
 	int			scale;
 	int			z_scale;
