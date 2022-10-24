@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ibalbako <ibalbako@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/24 12:12:54 by ibalbako          #+#    #+#             */
+/*   Updated: 2022/10/24 12:12:56 by ibalbako         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #include "fdf.h"
 
@@ -30,22 +42,22 @@ void	line(t_dot a, t_dot b, t_dot *param)
 	}
 }
 
-void	draw(t_dot **matrix)
+void	draw(t_dot **tab)
 {
 	int		y;
 	int		x;
 
 	y = 0;
-	while (matrix[y])
+	while (tab[y])
 	{
 		x = 0;
 		while (1)
 		{
-			if (matrix[y + 1])
-				line(matrix[y][x], matrix[y + 1][x], &PRM);
-			if (!matrix[y][x].is_last)
-				line(matrix[y][x], matrix[y][x + 1], &PRM);
-			if (matrix[y][x].is_last)
+			if (tab[y + 1])
+				line(tab[y][x], tab[y + 1][x], &TAB);
+			if (!tab[y][x].is_last)
+				line(tab[y][x], tab[y][x + 1], &TAB);
+			if (tab[y][x].is_last)
 				break ;
 			x++;
 		}
